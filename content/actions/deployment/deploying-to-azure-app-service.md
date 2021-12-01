@@ -75,7 +75,7 @@ Before creating your {% data variables.product.prodname_actions %} workflow, you
 
 Once you've completed the prerequisites, you can proceed with creating the workflow.
 
-The following example workflow demonstrates how to build, test, and deploy the Node.js project to Azure App Service when there is a push to the `main` branch.
+The following example workflow demonstrates how to build, test, and deploy the Node.js project to Azure App Service when a release is created.
 
 Ensure that you set `AZURE_WEBAPP_NAME` in the workflow `env` key to the name of the web app you created. You can also change `AZURE_WEBAPP_PACKAGE_PATH` if the path to your project is not the repository root and `NODE_VERSION` if you want to use a node version other than `10.x`.
 
@@ -85,9 +85,8 @@ Ensure that you set `AZURE_WEBAPP_NAME` in the workflow `env` key to the name of
 {% data reusables.actions.actions-not-certified-by-github-comment %}
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [created]
 
 env:
   AZURE_WEBAPP_NAME: MY_WEBAPP_NAME   # set this to your application's name

@@ -21,7 +21,7 @@ shortTitle: Deploy to Google Kubernetes Engine
 
 ## Introduction
 
-This guide explains how to use {% data variables.product.prodname_actions %} to build a containerized application, push it to Google Container Registry (GCR), and deploy it to Google Kubernetes Engine (GKE) when there is a push to the `main` branch.
+This guide explains how to use {% data variables.product.prodname_actions %} to build a containerized application, push it to Google Container Registry (GCR), and deploy it to Google Kubernetes Engine (GKE) when a release is created.
 
 GKE is a managed Kubernetes cluster service from Google Cloud that can host your containerized workloads in the cloud or in your own datacenter. For more information, see [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine).
 
@@ -125,9 +125,8 @@ Under the `env` key, change the value of `GKE_CLUSTER` to the name of your clust
 name: Build and Deploy to GKE
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [created]
 
 env:
   PROJECT_ID: {% raw %}${{ secrets.GKE_PROJECT }}{% endraw %}
